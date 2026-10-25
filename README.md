@@ -10,9 +10,9 @@ Built by **Paras Adlakha** and **Harshita Adlakha** for the **Dell × NVIDIA AI 
 
 **▶️ [Try it live in your browser](https://parasadlakha.github.io/nightdesk/app/)** · **🎬 [Narrated 2-minute demo](docs/video/Nightdesk-demo-2min.mp4)** · [3-minute pitch video](docs/video/Nightdesk-pitch-3min.mp4) · **📑 [Slides (PDF)](docs/slides/Nightdesk-slides.pdf)** · [PowerPoint](docs/slides/Nightdesk-slides.pptx) · [Project page](https://parasadlakha.github.io/nightdesk/)
 
-![Nightdesk dashboard after a night of email](docs/img/dashboard-escalated.png)
+![Nightdesk dashboard: the agent's steps for a P1 outage drawn as connected nodes](docs/img/app-canvas.png)
 
-*An outage at Harbor Logistics, an enterprise account on a 1-hour SLA: classified P1, escalated, and a reply drafted from the outage policy. The trace below the draft lists every tool call the agent made. (Screenshot taken with the rule engine; the engine tag on each email says which one handled it.)*
+*An outage at Harbor Logistics, an enterprise account on a 1-hour SLA. Each tool call the agent made is a node on the canvas, wired in order: the email, the customer lookup, the P1 classification, the policy search, the drafted reply, the page to on-call, and finish. The draft waits below for a person to approve. (Screenshot from the [live demo](https://parasadlakha.github.io/nightdesk/app/), which runs the rule engine; the engine tag on each email says which one handled it.)*
 
 **Contents:** [The hackathon](#the-hackathon) · [The problem](#the-problem) · [What Nightdesk does](#what-nightdesk-does) · [Architecture](#architecture) · [How one email is handled](#how-one-email-is-handled) · [Local-first by construction](#local-first-by-construction) · [Guardrails](#guardrails) · [Run it yourself](#run-it-yourself) · [Running on the Dell Pro Max GB10](#running-on-the-dell-pro-max-gb10) · [Repository layout](#repository-layout) · [What we learned](#what-we-learned) · [Limitations and roadmap](#limitations-and-roadmap) · [Team](#team)
 
@@ -197,7 +197,7 @@ ollama pull qwen2.5:3b   # small enough for a laptop; optional
 npm start         # http://localhost:8791
 ```
 
-Open the dashboard and click **Load overnight inbox** (or run `npm run seed` while it is running). Watch the agent work through six emails, open the Harbor Logistics outage to see the trace, approve a draft, then click **Send morning brief**.
+Open the dashboard and click **Load overnight inbox** (or run `npm run seed` while it is running). Watch the agent work through six emails. The canvas follows the most urgent one, the Harbor Logistics outage, and draws each tool call as a node. Click any email to see its own chain, approve a draft, then click **Send morning brief**.
 
 **Connect a channel (optional)**
 
