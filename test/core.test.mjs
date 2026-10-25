@@ -9,7 +9,7 @@ import { loadKb, searchKb, runTool } from '../core/tools.mjs';
 import { handleMessage } from '../core/agent.mjs';
 import { buildBrief } from '../core/brief.mjs';
 import { createStore } from '../core/store.mjs';
-import { isLocalUrl } from '../core/config.mjs';
+import { isLocalUrl, config } from '../core/config.mjs';
 
 const DATA = fileURLToPath(new URL('../data/', import.meta.url));
 const customers = JSON.parse(readFileSync(join(DATA, 'customers.json'), 'utf8'));
@@ -91,8 +91,9 @@ test('invalid classification is rejected', async () => {
 
 test('a broken model falls back to the rule engine', async () => {
   const c = ctx();
+  config.aiBaseUrl = 'http://localhost:1/v1'; // nothing listens here
   const out = await handleMessage({ id: 'a6', ...bySubject('Charged twice') }, { ...c, useModel: true });
-  // No model server in tests: the call fails, the rules finish the job.
+  // The model call fails, the rules finish the job.
   assert.equal(out.triage.category, 'billing');
   assert.match(out.engine, /rules/);
 });

@@ -8,7 +8,7 @@ Every reasoning step and tool choice is made by a **local model** behind an Open
 
 Built by **Paras Adlakha** and **Harshita Adlakha** for the **Dell × NVIDIA AI Hackathon**, San Francisco, October 25, 2026.
 
-**🎬 [Narrated 2-minute demo](docs/video/Nightdesk-demo-2min.mp4)** · [3-minute pitch video](docs/video/Nightdesk-pitch-3min.mp4) · **📑 [Slides (PDF)](docs/slides/Nightdesk-slides.pdf)** · [PowerPoint](docs/slides/Nightdesk-slides.pptx) · [Project page](https://parasadlakha.github.io/nightdesk/)
+**▶️ [Try it live in your browser](https://parasadlakha.github.io/nightdesk/app/)** · **🎬 [Narrated 2-minute demo](docs/video/Nightdesk-demo-2min.mp4)** · [3-minute pitch video](docs/video/Nightdesk-pitch-3min.mp4) · **📑 [Slides (PDF)](docs/slides/Nightdesk-slides.pdf)** · [PowerPoint](docs/slides/Nightdesk-slides.pptx) · [Project page](https://parasadlakha.github.io/nightdesk/)
 
 ![Nightdesk dashboard after a night of email](docs/img/dashboard-escalated.png)
 
@@ -182,6 +182,9 @@ sequenceDiagram
 ---
 
 ## Run it yourself
+
+**No install:** [parasadlakha.github.io/nightdesk/app](https://parasadlakha.github.io/nightdesk/app/) runs the same dashboard in your browser. The agent's rule engine, tool guardrails and morning brief run on the page. The local-model agent needs the steps below. `node scripts/build-web.mjs` rebuilds that page from `public/`, `core/` and `data/`.
+
 
 **Requirements:** Node 22 or newer. Optional: [Ollama](https://ollama.com) with a tool-calling model. Without a model, the rule engine runs the same tools.
 

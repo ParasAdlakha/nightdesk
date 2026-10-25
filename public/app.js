@@ -18,7 +18,7 @@ async function refresh() {
 function render() {
   const s = status.stats || {};
   const chips = [
-    [status.model_live ? 'on' : 'off', status.model_live ? `Model: ${status.model} · local` : 'Model offline · rule engine'],
+    [status.model_live ? 'on' : 'off', status.model_live ? `Model: ${status.model} · local` : status.browser_demo ? 'Browser demo · rule engine' : 'Model offline · rule engine'],
     ['on', `Cloud LLM calls: ${status.cloud_llm_calls ?? 0}`],
     ['on', `Inference cost: $0.00`],
     [status.channels?.telegram || status.channels?.slack ? 'on' : 'off', `Channel: ${status.channels?.telegram ? 'Telegram' : status.channels?.slack ? 'Slack' : 'console'}`],
@@ -67,7 +67,7 @@ function renderDetail(x) {
     ${c ? `<div class="card"><h3>Customer (local CRM)</h3><div class="kv"><span>Company</span><span>${esc(c.company)}</span><span>Plan</span><span>${esc(c.plan)} · $${c.mrr_usd}/mo</span><span>Renewal</span><span>${esc(c.renewal)}</span><span>Notes</span><span>${esc(c.notes || '–')}</span></div></div>` : ''}
     ${x.draft ? `<div class="card"><h3>Reply draft · ${x.draft.status === 'approved' ? 'approved by a person' : 'waiting for your approval'}</h3><textarea id="draft" ${x.draft.status === 'approved' ? 'disabled' : ''}>${esc(x.draft.body)}</textarea>
       <div class="row">${x.draft.status === 'approved' ? '<span class="tag status-approved">approved</span>' : '<button id="approve">Approve reply</button><span class="muted">The agent can’t send email. You decide.</span>'}</div></div>` : ''}
-    ${x.tool_calls?.length ? `<div class="card"><h3>Agent trace · tool calls chosen by the model</h3><ul class="trace">${x.tool_calls.map((t, i) => `<li><span class="n">${i + 1}</span><span class="name">${esc(t.name)}</span><span class="args">${esc(JSON.stringify(t.args)).slice(0, 260)}</span></li>`).join('')}</ul></div>` : x.status === 'working' ? '<div class="card"><h3>Agent trace</h3><p class="muted">The local model is working on this email…</p></div>' : ''}`;
+    ${x.tool_calls?.length ? `<div class="card"><h3>Agent trace · tool calls chosen by ${x.engine?.startsWith('rules') ? 'the rule engine' : 'the local model'}</h3><ul class="trace">${x.tool_calls.map((t, i) => `<li><span class="n">${i + 1}</span><span class="name">${esc(t.name)}</span><span class="args">${esc(JSON.stringify(t.args)).slice(0, 260)}</span></li>`).join('')}</ul></div>` : x.status === 'working' ? '<div class="card"><h3>Agent trace</h3><p class="muted">The local model is working on this email…</p></div>' : ''}`;
   const btn = $('approve');
   if (btn) btn.onclick = async () => { btn.disabled = true; await api(`/api/messages/${x.id}/approve`, { body: $('draft').value }); refresh(); };
 }
