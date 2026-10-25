@@ -22,8 +22,8 @@ writeFileSync(join(out, 'data.js'), `export default ${JSON.stringify(data, null,
 
 const html = readFileSync(join(root, 'public', 'index.html'), 'utf8')
   .replace('<title>Nightdesk</title>', '<title>Nightdesk · live demo</title>')
-  .replace('<header class="top">', '<div class="demo-banner">Live demo in your browser: the agent’s rule engine runs on this page. The full agent runs on a local model (Ollama/vLLM) on your own machine. <a href="https://github.com/ParasAdlakha/nightdesk">Code</a> · <a href="../">Project page</a></div>\n<header class="top">')
-  .replace('<link rel="stylesheet" href="style.css">', '<link rel="stylesheet" href="style.css">\n<style>.demo-banner{background:#8BCB2A;color:#10140C;padding:8px 20px;font-size:13px;font-weight:600}.demo-banner a{color:#10140C}.grid{height:calc(100vh - 100px)}</style>')
+  .replace('<div class="announce" id="announce"></div>', `<div class="demo-banner">LIVE DEMO · the agent’s rule engine runs in this page · the full agent runs on a local model on your own machine · <a href="https://github.com/ParasAdlakha/nightdesk">code</a> · <a href="../">project page</a></div>\n<div class="announce" id="announce"></div>`)
+  .replace('<link rel="stylesheet" href="style.css">', `<link rel="stylesheet" href="style.css">\n<style>.demo-banner{background:#EEFF8A;color:#0D0D0D;padding:7px 24px;font:12px 'JetBrains Mono',Consolas,monospace;letter-spacing:.02em;text-align:center}.demo-banner a{color:#0D0D0D}</style>`)
   .replace('<script src="app.js"></script>', '<script type="module" src="engine.js"></script>\n<script type="module" src="app.js"></script>');
 writeFileSync(join(out, 'index.html'), html);
 console.log('docs/app built');
