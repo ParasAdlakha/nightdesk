@@ -1,9 +1,9 @@
 // In-browser stand-in for server/server.mjs: answers the dashboard's /api/* calls and runs
 // the always-on loop with the same rule engine, tool guardrails and morning brief.
 // No model runs here; the engine tag on each email says "rules (browser demo)".
-import DATA from './data.js';
-import { planWithRules } from './rules.mjs';
-import { buildBrief } from './brief.mjs';
+import DATA from './data.js?v=a0a30dff91';
+import { planWithRules } from './rules.mjs?v=a0a30dff91';
+import { buildBrief } from './brief.mjs?v=a0a30dff91';
 
 const KEY = 'nightdesk-demo-v1';
 const fresh = () => ({ messages: [], feed: [], tasks: [], briefs: [], stats: { model_calls: 0, tokens_in: 0, tokens_out: 0, model_ms: 0 } });
