@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightdesk: the support agent that works the night shift</title>
+<meta name="description" content="An always-on, local-first support inbox agent. Triages overnight, drafts replies for approval, escalates to Slack or Telegram, posts a morning brief. All inference on local hardware.">
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..800&display=swap">
+<style>
+  :root { --ink:#11140F; --paper:#F6F7F2; --green:#8BCB2A; --dgreen:#4E7A0F; --muted:#4A5244; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'DM Sans', Arial, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.55; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  header { background: var(--ink); color: #F2F4EE; padding: 72px 0 56px; }
+  .eyebrow { color: var(--green); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; }
+  h1 { font-size: clamp(44px, 8vw, 84px); margin: 8px 0; line-height: 1; }
+  .lead { font-size: clamp(19px, 2.6vw, 26px); max-width: 760px; color: #D3DACB; }
+  .btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  .btn { background: var(--green); color: var(--ink); padding: 11px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+  .btn.ghost { background: transparent; color: #F2F4EE; border: 1px solid #3A4430; }
+  .hero { margin-top: 36px; width: 100%; border-radius: 14px; border: 1px solid #3A4430; }
+  section { padding: 56px 0; }
+  h2 { font-size: 32px; margin: 0 0 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .card { background: #fff; border: 1px solid #DDE2D4; border-radius: 14px; padding: 22px; }
+  .card h3 { margin: 0 0 6px; }
+  .card p { margin: 0; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; }
+  td, th { padding: 12px 14px; border-bottom: 1px solid #E4E8DC; text-align: left; vertical-align: top; }
+  th { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .scroll { overflow-x: auto; }
+  img.shot { width: 100%; border-radius: 12px; border: 1px solid #DDE2D4; }
+  video { width: 100%; border-radius: 12px; background: #000; }
+  pre { background: var(--ink); color: #DDE7CF; padding: 18px; border-radius: 12px; overflow-x: auto; font-size: 14px; }
+  footer { background: var(--ink); color: #9AA58E; padding: 32px 0; font-size: 14px; }
+  footer a, .wrap a { color: var(--dgreen); }
+  footer a { color: var(--green); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Dell × NVIDIA AI Hackathon · San Francisco · Oct 25, 2026</div>
+    <h1>Nightdesk</h1>
+    <p class="lead">The support agent that works the night shift, on your own hardware. It triages every email overnight, drafts grounded replies for approval, pages Telegram or Slack only when it matters, and posts a morning brief. No cloud LLM, ever.</p>
+    <div class="btns">
+      <a class="btn" href="https://github.com/ParasAdlakha/nightdesk">Code on GitHub</a>
+      <a class="btn ghost" href="video/Nightdesk-demo-2min.mp4">2-minute demo</a>
+      <a class="btn ghost" href="slides/Nightdesk-slides.pdf">Slides (PDF)</a>
+    </div>
+    <img class="hero" src="img/dashboard-escalated.png" alt="Nightdesk dashboard showing an escalated P1 outage with the agent's tool-call trace">
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The problem</h2>
+    <div class="grid">
+      <div class="card"><h3>2am emails wait</h3><p>The production outage sits under newsletters until someone logs in at 9.</p></div>
+      <div class="card"><h3>SLAs don’t sleep</h3><p>Enterprise contracts promise P1 responses within the hour, at any hour.</p></div>
+      <div class="card"><h3>Churn hides</h3><p>“We want to cancel” looks like any other email until the account manager reads it.</p></div>
+      <div class="card"><h3>Cloud AI isn’t an option</h3><p>Many companies can’t send customer email to a third-party model.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <h2>Watch it work</h2>
+    <video controls preload="metadata" poster="slides/s1.png" src="video/Nightdesk-demo-2min.mp4"></video>
+    <p><a href="video/Nightdesk-pitch-3min.mp4">3-minute pitch video</a> · <a href="slides/Nightdesk-slides.pptx">PowerPoint</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>One night, six emails</h2>
+    <div class="scroll"><table>
+      <tr><th>Email</th><th>Agent decision</th><th>Action</th></tr>
+      <tr><td>Harbor Logistics: warehouse scanners down, error 503</td><td>Outage · P1</td><td>Paged on-call, holding reply drafted from the outage policy</td></tr>
+      <tr><td>Corvid Health: “we want to cancel”</td><td>Churn risk</td><td>Paged, account-manager task, careful apology</td></tr>
+      <tr><td>Studio Finch: charged twice</td><td>Billing</td><td>Refund wording from policy, billing confirms first</td></tr>
+      <tr><td>Brightlane: SSO + 12 seats</td><td>Sales</td><td>Answer from plans article, sales lead</td></tr>
+      <tr><td>Tandem Cafe: locked out</td><td>Account access</td><td>Self-serve unlock steps</td></tr>
+      <tr><td>“10x your MRR” newsletter</td><td>Spam</td><td>Archived. No reply, no alert</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <h2>The model decides. The code enforces.</h2>
+    <div class="grid">
+      <div class="card"><h3>Local only</h3><p>The model URL must be localhost or the call is refused before it is made. Unit-tested.</p></div>
+      <div class="card"><h3>Drafts, never sends</h3><p>There is no send-email tool. A person approves every reply.</p></div>
+      <div class="card"><h3>Gated escalation</h3><p>Paging is allowed only after a P1 or churn-risk classification.</p></div>
+      <div class="card"><h3>Always degrades gracefully</h3><p>Model down or out of memory? A rule engine runs the same tools.</p></div>
+    </div>
+    <p></p>
+    <img class="shot" src="img/dashboard-brief.png" alt="Morning brief posted to the channel">
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Run it</h2>
+<pre>git clone https://github.com/ParasAdlakha/nightdesk.git && cd nightdesk
+cp .env.example .env.local
+ollama pull qwen2.5:3b        # on a Dell Pro Max GB10: qwen2.5:32b or Nemotron Nano 9B
+npm test && npm start         # http://localhost:8791</pre>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Built by Paras Adlakha and Harshita Adlakha · <a href="https://github.com/ParasAdlakha/nightdesk">GitHub</a> · MIT licensed</div>
+</footer>
+</body>
+</html>

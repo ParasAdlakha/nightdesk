@@ -1,0 +1,32 @@
+# Sandbox policy for running Nightdesk inside NVIDIA OpenShell (NemoClaw).
+# Draft: written against the policy concepts OpenShell documents (filesystem, network egress,
+# inference routing). Check field names against the OpenShell version on your box before use.
+name: nightdesk
+description: Always-on support inbox agent. Local inference only.
+
+filesystem:
+  read_only:
+    - /opt/nightdesk/core
+    - /opt/nightdesk/server
+    - /opt/nightdesk/public
+    - /opt/nightdesk/data        # CRM export and knowledge base
+  read_write:
+    - /opt/nightdesk/var         # state, audit log, inbox drop folder
+
+network:
+  default: deny
+  allow:
+    - host: localhost
+      ports: [11434, 8000]       # local model server (Ollama or vLLM/NIM). No cloud LLM.
+    - host: api.telegram.org     # escalations and the morning brief
+      ports: [443]
+    - host: hooks.slack.com      # optional Slack webhook
+      ports: [443]
+
+inference:
+  # All model traffic stays on the device.
+  route: local
+  endpoint: http://localhost:11434/v1
+
+process:
+  allow_exec: false              # the agent never shells out

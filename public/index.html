@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightdesk</title>
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><img src="icon.svg" alt=""><div><b>Nightdesk</b><span>always-on support agent · local inference</span></div></div>
+  <div class="chips" id="chips"></div>
+</header>
+<main class="grid">
+  <section class="col list">
+    <div class="col-head"><h2>Inbox</h2><div class="actions"><button id="seed">Load overnight inbox</button><button id="reset" class="ghost">Reset</button></div></div>
+    <div id="stats" class="stats"></div>
+    <ul id="messages"></ul>
+  </section>
+  <section class="col detail" id="detail"><p class="empty">Pick an email to see what the agent did.</p></section>
+  <section class="col side">
+    <div class="col-head"><h2>Channel</h2><button id="brief">Send morning brief</button></div>
+    <ul id="feed"></ul>
+    <h2 class="sub">Follow-up tasks</h2>
+    <ul id="tasks"></ul>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

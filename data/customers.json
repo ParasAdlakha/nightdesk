@@ -1,0 +1,7 @@
+[
+  { "email": "maya@brightlane.io", "name": "Maya Okafor", "company": "Brightlane", "plan": "Business", "mrr_usd": 1200, "renewal": "2026-11-30", "open_tickets": 1, "notes": "Champion. Asked about SSO in Q3." },
+  { "email": "ops@harborfreight-logistics.com", "name": "Daniel Reyes", "company": "Harbor Logistics", "plan": "Enterprise", "mrr_usd": 6400, "renewal": "2027-02-01", "open_tickets": 0, "notes": "24/7 warehouse ops. SLA: 1 hour response on P1." },
+  { "email": "lena@studiofinch.de", "name": "Lena Brandt", "company": "Studio Finch", "plan": "Starter", "mrr_usd": 49, "renewal": "2026-12-12", "open_tickets": 0, "notes": "" },
+  { "email": "sam.k@corvidhealth.com", "name": "Sam Kowalski", "company": "Corvid Health", "plan": "Business", "mrr_usd": 2100, "renewal": "2026-11-05", "open_tickets": 2, "notes": "Renewal at risk: two late invoices disputed." },
+  { "email": "priya@tandemcafe.com", "name": "Priya Nair", "company": "Tandem Cafe", "plan": "Starter", "mrr_usd": 49, "renewal": "2027-03-20", "open_tickets": 0, "notes": "" }
+]

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nightdesk slides</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..800&family=JetBrains+Mono:wght@400;600&display=swap');
+  :root { --ink:#11140F; --paper:#F6F7F2; --green:#8BCB2A; --dgreen:#4E7A0F; --muted:#4A5244; --lmuted:#B9C2AE; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #333; font-family: 'DM Sans', Arial, sans-serif; }
+  .s { width: 1920px; height: 1080px; padding: 110px 128px; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 44px; margin: 0 auto 40px; }
+  .dark { background: var(--ink); color: #F2F4EE; }
+  .light { background: var(--paper); color: var(--ink); }
+  .eyebrow { font-size: 28px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--dgreen); }
+  .dark .eyebrow { color: var(--green); }
+  h1 { font-size: 150px; font-weight: 800; line-height: 1; }
+  h2 { font-size: 68px; font-weight: 700; line-height: 1.1; max-width: 1600px; }
+  p, li { font-size: 32px; line-height: 1.45; }
+  .muted { color: var(--muted); } .dark .muted { color: var(--lmuted); }
+  .row { display: flex; gap: 32px; }
+  .card { flex: 1; background: #fff; border: 1px solid #DDE2D4; border-radius: 18px; padding: 40px; display: flex; flex-direction: column; gap: 14px; }
+  .dark .card { background: #1D2219; border-color: #3A4430; }
+  .card h3 { font-size: 38px; }
+  .big { font-size: 84px; font-weight: 800; color: var(--dgreen); line-height: 1; }
+  .shot { border-radius: 14px; border: 1px solid #3A4430; box-shadow: 0 20px 60px rgba(0,0,0,.35); width: 100%; }
+  .mono { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 26px; line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 30px; width: 100%; }
+  td, th { text-align: left; padding: 18px 20px; border-bottom: 1px solid #DDE2D4; }
+  th { font-size: 24px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); }
+  .pill { display: inline-block; padding: 4px 16px; border-radius: 999px; font-size: 24px; font-weight: 700; }
+  .p1 { background: #F06A5B; color: #fff; } .hi { background: #F2B33D; color: #11140F; } .ok { background: #E7F3D2; color: #2F4A0A; }
+  .foot { position: absolute; left: 128px; right: 128px; bottom: 54px; display: flex; justify-content: space-between; font-size: 22px; color: #8A9480; }
+  .moon { position: absolute; right: 120px; top: 110px; width: 260px; height: 260px; }
+</style>
+</head>
+<body>
+
+<section class="s dark" id="s1" style="justify-content:center">
+  <svg class="moon" viewBox="0 0 64 64"><path d="M40 14a18 18 0 1 0 10 31A20 20 0 0 1 40 14z" fill="#8BCB2A"/><circle cx="44" cy="22" r="3" fill="#F2F4EE"/></svg>
+  <div class="eyebrow">Dell × NVIDIA AI Hackathon</div>
+  <h1>Nightdesk</h1>
+  <p style="font-size:54px;line-height:1.2;max-width:1450px">The support agent that works the night shift. On your own hardware.</p>
+  <p class="muted">Always-on · local inference only · Telegram &amp; Slack · Paras &amp; Harshita Adlakha</p>
+</section>
+
+<section class="s light" id="s2">
+  <div class="eyebrow">The problem</div>
+  <h2>24/7 products, 9-to-5 support teams</h2>
+  <div class="row">
+    <div class="card"><div class="big">2am</div><h3>The urgent email waits</h3><p class="muted">A production outage sits under newsletters and password resets until someone logs in.</p></div>
+    <div class="card"><div class="big">1 hour</div><h3>SLAs don’t sleep</h3><p class="muted">Enterprise contracts promise P1 responses within the hour, at any hour.</p></div>
+    <div class="card"><div class="big">“Cancel”</div><h3>Churn hides in the inbox</h3><p class="muted">And cloud AI help desks mean sending every customer email to someone else’s model.</p></div>
+  </div>
+  <div class="foot"><span>Nightdesk</span><span>2</span></div>
+</section>
+
+<section class="s dark" id="s3">
+  <div class="eyebrow">What it does</div>
+  <h2>An agent that triages overnight and wakes a human only when it should</h2>
+  <img class="shot" src="../img/dashboard-escalated.png" alt="Nightdesk dashboard with an escalated outage" style="height:640px;object-fit:cover;object-position:top">
+  <div class="foot"><span>Nightdesk</span><span>3</span></div>
+</section>
+
+<section class="s light" id="s4">
+  <div class="eyebrow">The agent loop</div>
+  <h2>The local model picks the tools. The code decides what each tool may do.</h2>
+  <table>
+    <tr><th>Tool</th><th>Does</th><th>Guardrail</th></tr>
+    <tr><td><b>lookup_customer</b></td><td>Plan, MRR, renewal, SLA from the local CRM</td><td>Read-only</td></tr>
+    <tr><td><b>search_kb</b></td><td>Finds the policy that applies</td><td>Read-only, local files</td></tr>
+    <tr><td><b>classify</b></td><td>Category, urgency, one-line summary</td><td>Enums; invalid is rejected</td></tr>
+    <tr><td><b>draft_reply</b></td><td>Writes a grounded reply</td><td>Saved for approval; cannot send</td></tr>
+    <tr><td><b>escalate</b></td><td>Pages Telegram / Slack now</td><td>Only after P1 or churn risk</td></tr>
+    <tr><td><b>create_task</b> · <b>finish</b></td><td>Follow-ups for billing, sales, account managers</td><td>Max 8 steps, then fallback</td></tr>
+  </table>
+  <div class="foot"><span>Nightdesk</span><span>4</span></div>
+</section>
+
+<section class="s light" id="s5">
+  <div class="eyebrow">One night, six emails</div>
+  <h2>Every email gets the right response, and nobody is woken for spam</h2>
+  <table>
+    <tr><th>Email</th><th>Decision</th><th>Action</th></tr>
+    <tr><td>Harbor Logistics: warehouse scanners down, 503</td><td><span class="pill p1">P1 · outage</span></td><td>Paged on-call, holding reply drafted</td></tr>
+    <tr><td>Corvid Health: “we want to cancel”</td><td><span class="pill hi">churn risk</span></td><td>Paged, account-manager task, apology</td></tr>
+    <tr><td>Studio Finch: charged twice</td><td><span class="pill ok">billing</span></td><td>Policy-grounded reply, billing task</td></tr>
+    <tr><td>Brightlane: SSO + 12 seats</td><td><span class="pill ok">sales</span></td><td>Answer + sales lead</td></tr>
+    <tr><td>Tandem Cafe: locked out</td><td><span class="pill ok">access</span></td><td>Self-serve unlock steps</td></tr>
+    <tr><td>“10x your MRR” newsletter</td><td><span class="pill ok">spam</span></td><td>Archived. No reply, no alert</td></tr>
+  </table>
+  <div class="foot"><span>Nightdesk</span><span>5</span></div>
+</section>
+
+<section class="s dark" id="s6">
+  <div class="eyebrow">Local-first, by construction</div>
+  <h2>Customer email never touches a cloud model</h2>
+  <div class="row">
+    <div style="flex:1;display:flex;flex-direction:column;gap:18px">
+      <ul style="padding-left:36px;display:flex;flex-direction:column;gap:14px">
+        <li>Model endpoint must be <b>localhost</b>, or the code refuses to call it (unit-tested)</li>
+        <li>CRM, knowledge base, state and audit log are local files</li>
+        <li>$0 per model call; cloud LLM calls: <b>0</b></li>
+        <li>Model down or out of memory? A rule engine runs the same tools</li>
+        <li>Built for the Dell Pro Max GB10: 128 GB unified memory, on 24/7</li>
+      </ul>
+    </div>
+    <div class="card" style="flex:1">
+      <p class="mono" style="color:#8BCB2A">$ ollama pull qwen2.5:32b</p>
+      <p class="mono">$ npm start</p>
+      <p class="mono" style="color:#B9C2AE">model: qwen2.5 @ localhost:11434 (local)<br>channels: telegram, console</p>
+      <p class="mono" style="color:#8BCB2A">$ systemctl enable --now nightdesk</p>
+    </div>
+  </div>
+  <div class="foot"><span>Nightdesk</span><span>6</span></div>
+</section>
+
+<section class="s light" id="s7">
+  <div class="eyebrow">Why a company pays</div>
+  <h2>A night shift for the cost of one box in the closet</h2>
+  <div class="row">
+    <div class="card"><h3>SLA protection</h3><p class="muted">P1s are paged in minutes, not discovered at 9am.</p></div>
+    <div class="card"><h3>Revenue saved</h3><p class="muted">Churn signals reach the account manager with MRR and renewal date attached.</p></div>
+    <div class="card"><h3>Mornings back</h3><p class="muted">Replies drafted from your own policies; the team approves instead of writing.</p></div>
+    <div class="card"><h3>Compliance-friendly</h3><p class="muted">No third-party model sees customer data. Every action is in an audit log.</p></div>
+  </div>
+  <div class="foot"><span>Nightdesk</span><span>7</span></div>
+</section>
+
+<section class="s dark" id="s8" style="justify-content:center">
+  <div class="eyebrow">Next</div>
+  <h2 style="font-size:84px">Two-way chat, real mailboxes, local embeddings</h2>
+  <p style="max-width:1500px">Approve drafts from Telegram (“approve 3”), connect IMAP/Gmail, semantic knowledge-base search on the GB10, and run inside an OpenShell sandbox.</p>
+  <p class="muted">github.com/ParasAdlakha/nightdesk · parasadlakha.github.io/nightdesk</p>
+</section>
+
+</body>
+</html>

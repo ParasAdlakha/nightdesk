@@ -1,0 +1,23 @@
+# systemd unit: runs Nightdesk always-on on the Dell Pro Max GB10 (DGX OS / Ubuntu).
+# sudo cp deploy/nightdesk.service /etc/systemd/system/ && sudo systemctl enable --now nightdesk
+[Unit]
+Description=Nightdesk always-on support agent (local inference)
+After=network-online.target ollama.service
+Wants=ollama.service
+
+[Service]
+Type=simple
+User=nightdesk
+WorkingDirectory=/opt/nightdesk
+ExecStart=/usr/bin/node --env-file-if-exists=.env.local server/server.mjs
+Restart=always
+RestartSec=5
+# Least privilege: the agent only needs its own folder.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/nightdesk/var
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

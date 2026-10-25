@@ -1,0 +1,16 @@
+{
+  "name": "nightdesk",
+  "version": "0.1.0",
+  "description": "An always-on, local-first support inbox agent: triages overnight, drafts replies for approval, escalates to Slack or Telegram, and posts a morning brief. All inference on local hardware.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node --env-file-if-exists=.env.local server/server.mjs",
+    "dev": "node --watch --env-file-if-exists=.env.local server/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "seed": "node --env-file-if-exists=.env.local scripts/seed.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

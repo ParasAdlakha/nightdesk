@@ -1,0 +1,8 @@
+[
+  { "from": "ops@harborfreight-logistics.com", "subject": "URGENT: scanners can't sync, warehouse stopped", "body": "Since about 2am none of our handheld scanners can sync. The dashboard shows error 503. Our night shift is loading trucks by hand. Please call me, this is production down.", "received_at": "2026-10-25T02:14:00-07:00" },
+  { "from": "maya@brightlane.io", "subject": "Adding SSO for our team?", "body": "Hi! We're growing and our IT team wants to put everyone on Okta. Is SAML SSO something we can turn on with our current plan? Also how do we add 12 more seats?", "received_at": "2026-10-25T00:41:00-07:00" },
+  { "from": "lena@studiofinch.de", "subject": "Charged twice this month", "body": "Hello, I see two charges of $49 on my card for October. Can you refund one? Thanks, Lena", "received_at": "2026-10-24T23:58:00-07:00" },
+  { "from": "sam.k@corvidhealth.com", "subject": "We want to cancel", "body": "Honestly we're done. Third invoice problem this quarter and nobody answers. Please cancel our account at the end of the month.", "received_at": "2026-10-25T03:30:00-07:00" },
+  { "from": "priya@tandemcafe.com", "subject": "locked out", "body": "I typed my password wrong a few times and now it says my account is locked?? I need to print today's rota.", "received_at": "2026-10-25T05:02:00-07:00" },
+  { "from": "newsletter@growthhacks.example", "subject": "10 tricks to 10x your MRR", "body": "Unlock the secrets top founders use. Click here to claim your free ebook!", "received_at": "2026-10-25T04:00:00-07:00" }
+]
